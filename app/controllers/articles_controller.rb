@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   end
   #get article id
   def show
-    @article = Article.find(params[:id])
+    getId
+    # @article = Article.find(params[:id])
   end
   #get articles view
   def new
@@ -20,15 +21,32 @@ class ArticlesController < ApplicationController
     end
 
   end
+  def edit
+    getId
+    # @article = Article.find(params[:id])
+  end
 
   def destroy
-    @article = Article.find(params[:id])
+    getId
+    # @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path
+  end
+  def update
+    getId
+    if @article.update(article_params)
+      redirect_to @article
+    else
+      render :edit
+    end
   end
   private
   def article_params
     params.require(:article).permit(:title, :body)
 
+  end
+  #this is the def to find a register id
+  def getId
+    @article = Article.find(params[:id])
   end
 end

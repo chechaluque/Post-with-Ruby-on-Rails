@@ -1,4 +1,9 @@
-<h1><%= @article.title %></h1>
-<div>
-  <%= @article.body %>
+<div class="col-md-5 col-md-offset-2">
+  <h1><%= @article.title %></h1>
+  <div>
+    <%= @article.body %>
+  </div>
+  <div>
+    <%= link_to "Editar", edit_article_path(@article), class:"btn btn-info" %>
+  </div>
 </div>
